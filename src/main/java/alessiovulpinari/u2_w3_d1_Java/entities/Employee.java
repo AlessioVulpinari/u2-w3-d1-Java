@@ -29,16 +29,20 @@ public class Employee {
     private String lastName;
 
     @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
     private String email;
 
     @Column(name = "url_avatar", nullable = false)
     private String avatarUrl;
 
-    public Employee(String username, String firstName, String lastName, String email) {
+    public Employee(String username, String firstName, String lastName, String email, String password) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
         this.avatarUrl = "https://ui-avatars.com/api/?name=" + this.getFirstName() + "+" + this.getLastName();
     }
 }

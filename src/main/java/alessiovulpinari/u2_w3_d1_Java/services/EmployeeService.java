@@ -49,6 +49,10 @@ public class EmployeeService {
         return this.employeeRepository.findById(employeeId).orElseThrow(() -> new NotFoundException(employeeId));
     }
 
+    public Employee findByEmail(String email) {
+        return this.employeeRepository.findByEmail(email).orElseThrow(() -> new NotFoundException(email));
+    }
+
     public Employee findByIdAndUpdate(UUID employeeId, EmployeePayload body)
     {
         Employee found = findById(employeeId);
