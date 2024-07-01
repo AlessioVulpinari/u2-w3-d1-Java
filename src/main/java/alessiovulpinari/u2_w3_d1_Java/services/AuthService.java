@@ -16,6 +16,7 @@ public class AuthService {
     @Autowired
     private JWTTools jwtTools;
 
+    // funzione per la creazione
     public String authenticationAndTokenGeneration(EmployeeLoginDTO body) {
 
         Employee found = this.employeeService.findByEmail(body.email());

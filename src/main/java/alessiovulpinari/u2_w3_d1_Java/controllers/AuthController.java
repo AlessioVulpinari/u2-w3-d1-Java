@@ -28,6 +28,7 @@ public class AuthController {
         return new EmployeeLoginResponseDTO(authService.authenticationAndTokenGeneration(body));
     }
 
+    // spostiamo la post qui così da poterla fare senza controlli del token
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public EmployeePayloadResponse saveEmployee(@RequestBody @Validated EmployeePayload body, BindingResult result) {
