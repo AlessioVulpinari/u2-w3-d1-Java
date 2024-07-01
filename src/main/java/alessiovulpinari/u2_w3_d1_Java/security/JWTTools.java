@@ -1,6 +1,7 @@
 package alessiovulpinari.u2_w3_d1_Java.security;
 
 import alessiovulpinari.u2_w3_d1_Java.entities.Employee;
+import alessiovulpinari.u2_w3_d1_Java.exceptions.UnathorizedException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,4 +23,16 @@ public class JWTTools {
                 .signWith(Keys.hmacShaKeyFor(secret.getBytes())) // Creazione della Signature grazie al body e al segreto
                 .compact();
     }
+
+    public void verifyToken(String token){ // Dato un token verificami se è valido
+        try {
+            Jwts.parser().verifyWith(Keys.hmacShaKeyFor(secret.getBytes())).build().parse(token);
+            // Il metodo .parse(token) mi lancerà varie eccezioni in caso di token scaduto o malformato o manipolato
+
+        } catch (Exception ex){
+            throw new UnathorizedException("Problemi col token! Per favore effettua di nuovo il login!");
+            // Non importa se l'eccezione lanciata da .parse() sia un'eccezione perché il token è scaduto o malformato o manipolato, a noi interessa solo che il risultato sia un 401
+        }
+    }
+
 }

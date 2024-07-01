@@ -1,5 +1,6 @@
 package alessiovulpinari.u2_w3_d1_Java.payloads;
 
+import io.jsonwebtoken.security.Password;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -16,7 +17,9 @@ public record EmployeePayload(
         String LastName,
         @NotBlank(message = "La email è un dato obbligatorio!")
         @Email(message = "Mail inserita non valida!")
-        String email
+        String email,
+        @NotBlank
+        String password
         )
 
 {

@@ -30,15 +30,6 @@ public class EmployeeController {
         return this.employeeService.getEmployees(page, size);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public EmployeePayloadResponse saveEmployee(@RequestBody @Validated EmployeePayload body, BindingResult result) {
-        if (result.hasErrors()) {
-            throw new BadRequestException(result.getAllErrors());
-        }
-
-        return new EmployeePayloadResponse(this.employeeService.saveEmployee(body).getEmployeeId());
-    }
 
     @GetMapping("/{employeeId}")
     public Employee findById(@PathVariable UUID employeeId)
